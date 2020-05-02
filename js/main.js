@@ -27,7 +27,7 @@ airports = L.geoJson.ajax("assets/airports.geojson",{
   pointToLayer: function (feature, latlng) {
     var id = 0;
     if (feature.properties.CNTL_TWR == "Y") { id = 0; }
-    else  { id = 1; }
+    else { id = 1; }
     return L.marker(latlng, {icon: L.divIcon({className: 'fa fa-plane marker-color-' + (id + 1).toString() })});
   },
   attribution: 'Airports Data &copy; US Government | US States &copy; D3 | Base Map &copy; CartoDB | Made By Parth Wanage'
