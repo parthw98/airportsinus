@@ -81,3 +81,12 @@ legend.onAdd = function() {
 legend.addTo(mymap);
 
 L.control.scale({position: 'bottomleft'}).addTo(mymap);
+
+// Display Lat and Lng on click
+var popup = L.popup();
+
+function onMapClick(e) {
+  popup.setLatLng(e.latlng).setContent("Coordinates: " + e.latlng.toString()).openOn(mymap);
+}
+
+mymap.on('click', onMapClick);
