@@ -1,5 +1,8 @@
 # Airports in Different US States
 ## Lab 03: Web Map Design
+
+![](mapimage.png)
+
 Web Maps are interactive maps produced, used, and accessed on
 the World Wide Web and are built using Geographic Information
 Systems, codes and visualization tools.
@@ -21,7 +24,7 @@ appointed to different states since 9/11.
 Some of the primary functions used were geojson.ajax and innerHTML
 for coding purposes. I also used L to refer to the leaflet library
 and call in some useful functions. It was also good to have Issues
-on Github to resolve problems occuring during programming. 
+on Github to resolve problems occuring during programming.
 
 #### Libraries
 
