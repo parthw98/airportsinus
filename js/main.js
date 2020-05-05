@@ -1,4 +1,3 @@
-// Create a map object.
 var mymap = L.map('map', {
     center: [44.55, -102.33],
     zoom: 4,
@@ -35,7 +34,7 @@ airports = L.geoJson.ajax("assets/airports.geojson",{
 
 colors = chroma.scale('YlOrRd').colors(6);
 
-function setColor(count) {
+function setColor(density) {
     var id = 0;
     if (density > 40) { id = 5; }
     else if (density > 25 && density <= 40) { id = 4; }

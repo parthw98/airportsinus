@@ -7,44 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-    <style>
-
-        html, body, #map { width: 100%; height: 100%; margin: 0; background: #fff; }
-
-        .legend {
-            line-height: 16px;
-            width: 140px;
-            color: #333333;
-            font-family: 'Titillium Web', sans-serif;
-            padding: 6px 8px;
-            background: white;
-            background: rgba(255,255,255,0.5);
-            box-shadow: 0 0 15px rgba(0,0,0,0.2);
-            border-radius: 5px;
-        }
-
-        .legend i {
-            width: 16px;
-            height: 16px;
-            float: left;
-            margin-right: 8px;
-            opacity: 0.9;
-        }
-
-        .legend img {
-            width: 16px;
-            height: 16px;
-            margin-right: 3px;
-            float: left;
-        }
-
-        .legend p {
-            font-size: 12px;
-            line-height: 16px;
-            margin: 0;
-        }
-
-    </style>
+    <link rel="stylesheet" href="css/main.css"/>
     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -53,102 +16,6 @@
 <body>
 <!-- Our web map and content will go here -->
 <div id="map"></div>
-<script>
-
-    // Create a map object.
-    var mymap = L.map('map', {
-        center: [44.55, -102.33],
-        zoom: 4,
-        maxZoom: 10,
-        minZoom: 3,
-        detectRetina: true});
-
-    // Add a base map.
-    L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png').addTo(mymap);
-
-    // Add Airport data to the map
-    var airports = null;
-
-    // Add icon colors
-    var colors = chroma.scale('dark2').mode('lch').colors(2);
-
-    for (i = 0; i < 2; i++) {
-         $('head').append($("<style> .marker-color-" + (i + 1).toString() + " { color: " + colors[i] + "; font-size: 15px; text-shadow: 0 0 3px #ffffff;} </style>"));
-    }
-
-    airports = L.geoJson.ajax("assets/airports.geojson",{
-      onEachFeature: function (feature, layer) {
-        layer.bindPopup(feature.properties.AIRPT_NAME);
-      },
-
-      pointToLayer: function (feature, latlng) {
-        var id = 0;
-        if (feature.properties.CNTL_TWR == "Y") { id = 0; }
-        else { id = 1; }
-        return L.marker(latlng, {icon: L.divIcon({className: 'fa fa-plane marker-color-' + (id + 1).toString() })});
-      },
-      attribution: 'Airports Data &copy; US Government | US States &copy; D3 | Base Map &copy; CartoDB | Made By Parth Wanage'
-    }).addTo(mymap);
-
-    colors = chroma.scale('YlOrRd').colors(6);
-
-    function setColor(density) {
-        var id = 0;
-        if (density > 40) { id = 5; }
-        else if (density > 25 && density <= 40) { id = 4; }
-        else if (density > 15 && density <= 25) { id = 3; }
-        else if (density > 10 && density <= 15) { id = 2; }
-        else if (density > 5 && density <= 10) { id = 1; }
-        else  { id = 0; }
-        return colors[id];
-    }
-
-    function style(feature) {
-        return {
-            fillColor: setColor(feature.properties.count),
-            fillOpacity: 0.4,
-            weight: 2,
-            opacity: 1,
-            color: '#b4b4b4',
-            dashArray: '4'
-        };
-    }
-
-    L.geoJson.ajax("assets/us-states.geojson", {
-        style: style
-    }).addTo(mymap);
-
-    var legend = L.control({position: 'topright'});
-
-    legend.onAdd = function() {
-        var div = L.DomUtil.create('div', 'legend');
-        div.innerHTML += '<b> Airport</b><br/>';
-        div.innerHTML += '<i style="background: ' + colors[5] + '; opacity: 0.5"></i><p>40+</p>';
-        div.innerHTML += '<i style="background: ' + colors[4] + '; opacity: 0.5"></i><p>26-40</p>';
-        div.innerHTML += '<i style="background: ' + colors[3] + '; opacity: 0.5"></i><p>16-25</p>';
-        div.innerHTML += '<i style="background: ' + colors[2] + '; opacity: 0.5"></i><p>11-15</p>';
-        div.innerHTML += '<i style="background: ' + colors[1] + '; opacity: 0.5"></i><p>6-10</p>';
-        div.innerHTML += '<i style="background: ' + colors[0] + '; opacity: 0.5"></i><p>0-5</p>';
-        div.innerHTML += '<hr><b>Air Traffic Control Presence</b><br/>';
-        div.innerHTML += '<i class="fa fa-plane marker-color-1"></i><p> Control Tower PRESENT</p>';
-        div.innerHTML += '<i class="fa fa-plane marker-color-2"></i><p> Control Tower ABSENT</p>';
-        return div;
-    };
-
-    legend.addTo(mymap);
-
-    L.control.scale({position: 'bottomleft'}).addTo(mymap);
-
-    // Display Lat and Lng on click
-    var popup = L.popup();
-
-    function onMapClick(e) {
-      popup.setLatLng(e.latlng).setContent("Coordinates: " + e.latlng.toString()).openOn(mymap);
-    }
-
-    mymap.on('click', onMapClick);
-
-
-</script>
+<script src="js/main.js"></script>
 </body>
 </html>
