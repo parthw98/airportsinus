@@ -21,7 +21,7 @@ for (i = 0; i < 2; i++) {
 
 airports = L.geoJson.ajax("assets/airports.geojson",{
   onEachFeature: function (feature, layer) {
-    layer.bindpopup(feature.properties.AIRPT_NAME);
+    layer.bindPopup(feature.properties.AIRPT_NAME);
   },
 
   pointToLayer: function (feature, latlng) {
