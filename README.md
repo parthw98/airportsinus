@@ -1,7 +1,7 @@
 # Airports in Different US States
 ## Lab 03: Web Map Design
 
-![](mapimage.png)
+![](img/mapimage.png)
 
 Web Maps are interactive maps produced, used, and accessed on
 the World Wide Web and are built using Geographic Information
