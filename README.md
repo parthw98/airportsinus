@@ -17,7 +17,8 @@ airports which helps in predicting which places will have
 the maximum air traffic. This is not only useful for pilots
 but also useful for government air/flight authorities as it
 helps them in assigning Air Traffic officers who are centrally
-appointed to different states since 9/11.
+appointed to different states since 9/11. This map also
+can be used for travellers who plan to explore the United States.
 
 #### Primary Functions
 
